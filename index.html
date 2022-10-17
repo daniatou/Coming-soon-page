@@ -17,18 +17,48 @@
         <main class="text-center">
             <h1 class="p-30">COMING SOON</h1>
             <hr>
-            <p class="p-30">
-                30 days left
+            <p id="launch-day" class="p-30">
             </p>
+
         </main>
 
-        <footer  class="p-30" >
-         <small>
-            By Daniatou DJIBRIL
-         </small>
+        <footer class="p-30">
+            <small>
+                By Daniatou DJIBRIL
+            </small>
         </footer>
 
     </div>
+
+
+    <script>
+        var launch_date = new Date("March 7, 2023 00:57:30").getTime();
+
+
+        var count = setInterval(function () {
+
+            var today = new Date().getTime();
+            //  Distance between today and the launch day date
+            var distance = launch_date - today;
+
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("launch-day").innerHTML = days + " Days " + hours + "Hours "
+                + minutes + "Min " + seconds + "Sec";
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("launch-day").innerHTML = "EXPIRED";
+            }
+        }, 1000);
+
+
+    </script>
+
 </body>
+
+
 
 </html>
